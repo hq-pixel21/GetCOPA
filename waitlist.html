@@ -51,16 +51,40 @@
     </div>
   </main>
 
-  <script>
+<script>
     const form = document.getElementById('waitlistForm');
     const statusEl = document.getElementById('waitlistStatus');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      statusEl.classList.add('show');
-      form.querySelector('button').textContent = 'Requested';
-      form.querySelector('button').disabled = true;
-      form.querySelector('button').style.opacity = '0.5';
-      form.querySelector('button').style.cursor = 'not-allowed';
+    
+    // PASTE YOUR GOOGLE WEB APP URL HERE
+    const ENDPOINT = 'https://script.google.com/macros/s/AKfycbxGxKQhDbApRzHd2eBoh_OmStpO95q8eAxnhDbG9_Y0OytKw-rj_hQO6E0ljMA4Ghz7/exec';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); 
+      
+      const btn = form.querySelector('button');
+      btn.textContent = 'Requesting...'; 
+      btn.disabled = true;
+
+      const formData = new FormData(form);
+
+      try {
+        // Send data silently to Google Sheets
+        await fetch(ENDPOINT, {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors' // Bypasses Google's strict cross-origin rules
+        });
+
+        // Because of no-cors, we assume success if no network crash occurred
+        statusEl.classList.add('show');
+        btn.textContent = 'Requested';
+        btn.style.opacity = '0.5';
+        btn.style.cursor = 'not-allowed';
+        
+      } catch (error) {
+        btn.textContent = 'Error. Try again.';
+        btn.disabled = false;
+      }
     });
   </script>
 
