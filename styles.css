@@ -83,11 +83,18 @@ button, input { font: inherit; }
 }
 
 .wordmark {
-  font-weight: 800;
-  letter-spacing: -0.05em;
-  font-size: 16px;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border: none !important;
 }
+
+.logo-img {
+  height: 20px; /* Adjust scale here */
+  width: auto;
+  display: block;
+}
+
 .header-link {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -111,7 +118,7 @@ button, input { font: inherit; }
 .hero-media {
   position: absolute;
   inset: 0;
-  background-image: url("assets/hero.jpg"); /* Ensure this is a moody, B&W stadium shot */
+  background-image: url("assets/hero.jpg"); 
   background-size: cover;
   background-position: center;
   filter: grayscale(100%) contrast(120%);
@@ -120,7 +127,7 @@ button, input { font: inherit; }
 .hero-wash {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.85); /* Harsh, dark wash */
+  background: rgba(0,0,0,0.85);
 }
 
 .hero-content {
@@ -234,7 +241,7 @@ h1 {
 }
 
 .page .hero-media { 
-  filter: grayscale(100%) contrast(120%) opacity(0.15); /* Faint background texture for utility pages */
+  filter: grayscale(100%) contrast(120%) opacity(0.15);
 }
 
 .page-inner {
@@ -297,7 +304,7 @@ input {
   color: var(--text);
   font-size: 16px; 
   transition: border-color 0.2s linear;
-  -webkit-appearance: none; /* Fix for iOS rounding */
+  -webkit-appearance: none;
 }
 input:focus {
   outline: none;
