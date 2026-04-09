@@ -1,0 +1,226 @@
+/* ================================
+   COPA — DESIGN SYSTEM
+================================ */
+
+:root {
+  --bg: #0b0b0d;
+  --surface: #121216;
+  --surface-2: #18181d;
+
+  --text-primary: #f3f3f4;
+  --text-secondary: rgba(243, 243, 244, 0.7);
+  --text-muted: rgba(243, 243, 244, 0.45);
+
+  --border: rgba(255, 255, 255, 0.1);
+
+  --cta-bg: #f3f3f4;
+  --cta-text: #0b0b0d;
+
+  --radius-sm: 14px;
+  --radius-md: 18px;
+  --radius-pill: 999px;
+
+  --max-width: 1040px;
+}
+
+/* ================================
+   RESET
+================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* ================================
+   GLOBAL ELEMENTS
+================================ */
+
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+small {
+  color: var(--text-muted);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.logo {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.header-link {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: url("assets/hero.jpg") center / cover no-repeat;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 96px 24px 48px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.kicker {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.sub {
+  max-width: 520px;
+  margin-bottom: 32px;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+.cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 14px 20px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--cta-bg);
+  color: var(--cta-text);
+}
+
+.btn-secondary {
+  border-color: rgba(243, 243, 244, 0.45);
+  color: var(--text-primary);
+  background: transparent;
+}
+
+/* ================================
+   SIMPLE PAGES (WAITLIST / RESET)
+================================ */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.panel {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 32px;
+}
+
+.panel h1 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.form {
+  margin-top: 24px;
+}
+
+label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+input {
+  width: 100%;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+input:focus {
+  outline: none;
+  border-color: rgba(243, 243, 244, 0.3);
+}
+
+.panel small {
+  display: block;
+  margin-top: 16px;
+  text-align: center;
+}
