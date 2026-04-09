@@ -1,308 +1,358 @@
 /* =========================================
-   COPA — PUBLIC SITE (SHIP READY)
-   Dark-first • Calm • Premium • Minimal
+   COPA — PUBLIC SITE (COLD / BRUTALIST)
+   Strict • High-Contrast • Mechanical
 ========================================= */
 
-:root{
-  --bg: #0b0b0d;
-  --surface: rgba(18,18,22,0.92);
-  --surface-solid: #121216;
+:root {
+  /* Absolute Grayscale */
+  --bg: #000000;
+  --surface-solid: #000000;
+  --text: #ffffff;
+  --text-2: #88888b;
+  --text-3: #555555;
+  --border: #222224;
+  --border-2: #333333;
+  --cta-bg: #ffffff;
+  --cta-text: #000000;
 
-  --text: #f3f3f4;
-  --text-2: rgba(243,243,244,0.74);
-  --text-3: rgba(243,243,244,0.48);
+  /* Zero curves. Absolute corners. */
+  --r-sm: 0px;
+  --r-md: 0px;
+  --pill: 0px;
+  --shadow: none;
 
-  --border: rgba(255,255,255,0.10);
-  --border-2: rgba(255,255,255,0.16);
-
-  --cta-bg: #f3f3f4;
-  --cta-text: #0b0b0d;
-
-  --r-sm: 14px;
-  --r-md: 18px;
-  --pill: 999px;
-
+  /* Layout */
   --max: 1040px;
-
   --pad-m: 22px;
   --pad-d: 40px;
 
-  --shadow: 0 18px 60px rgba(0,0,0,0.42);
+  /* Typography */
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', 'Courier New', monospace;
 }
 
 /* Reset */
-*{ box-sizing:border-box; margin:0; padding:0; }
-html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
-body{
-  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; background: var(--bg); }
+body {
+  font-family: var(--font-main);
   background: var(--bg);
   color: var(--text);
   line-height: 1.55;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  -webkit-font-smoothing: antialiased;
 }
-a{ color:inherit; text-decoration:none; }
-img{ max-width:100%; display:block; }
-button, input{ font:inherit; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button, input { font: inherit; }
 
-:focus-visible{
-  outline: 2px solid rgba(243,243,244,0.22);
-  outline-offset: 2px;
-  border-radius: 10px;
+/* Mechanical Focus States */
+:focus-visible {
+  outline: 1px solid var(--text);
+  outline-offset: 4px;
+  border-radius: 0;
 }
 
-.container{
-  width:100%;
+.container {
+  width: 100%;
   max-width: var(--max);
   margin: 0 auto;
   padding-inline: var(--pad-m);
 }
 
 /* =========================================
-   Header (overlay, but stable + safe-area)
+   Header (Overlay, stable + safe-area)
 ========================================= */
-.site-header{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 20;
   padding-top: calc(18px + env(safe-area-inset-top));
   padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
-.site-header .container{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.wordmark{
-  font-weight: 650;
-  letter-spacing: 0.10em;
-  font-size: 13px;
-  opacity: 0.95;
+.wordmark {
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  font-size: 16px;
+  text-transform: uppercase;
 }
-.header-link{
-  font-size: 14px;
+.header-link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
   color: var(--text-2);
-  padding: 10px 12px;
-  border-radius: 12px;
+  padding: 10px 0;
+  transition: color 0.2s ease;
 }
-.header-link:hover{ color: var(--text); }
+.header-link:hover { color: var(--text); }
 
 /* =========================================
-   Hero (cinematic, content anchored low)
-   Uses modern viewport units to avoid iOS jumps
+   Hero (Cinematic, content anchored low)
 ========================================= */
-.hero{
-  position:relative;
-  min-height: 100svh; /* stable viewport on mobile */
+.hero {
+  position: relative;
+  min-height: 100svh;
   background: var(--bg);
-  overflow:hidden;
+  overflow: hidden;
 }
 
-.hero-media{
-  position:absolute;
-  inset:0;
-  background-image: url("assets/hero.jpg");
+.hero-media {
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/hero.jpg"); /* Ensure this is a moody, B&W stadium shot */
   background-size: cover;
   background-position: center;
-  transform: scale(1.02); /* subtle, static */
+  filter: grayscale(100%) contrast(120%);
 }
 
-/* Dark wash for legibility (no gradients) */
-.hero-wash{
-  position:absolute;
-  inset:0;
-  background: rgba(0,0,0,0.62);
+.hero-wash {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.85); /* Harsh, dark wash */
 }
 
-.hero-content{
-  position:relative;
+.hero-content {
+  position: relative;
   z-index: 5;
   min-height: 100svh;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-
-  /* Safe area bottom so buttons never collide with home indicator */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   padding-top: calc(88px + env(safe-area-inset-top));
-  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  padding-bottom: calc(40px + env(safe-area-inset-bottom));
 }
 
-.kicker{
-  font-size: 13px;
-  color: var(--text-3);
-  margin-bottom: 10px;
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-2);
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
 }
 
-h1{
-  font-weight: 650;
-  letter-spacing: -0.03em;
-  line-height: 1.08;
-  font-size: clamp(34px, 4.8vw, 56px);
+h1 {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  font-size: clamp(40px, 6vw, 72px);
   margin-bottom: 14px;
   max-width: 18ch;
+  text-transform: uppercase;
 }
 
-.sub{
+.sub {
   font-size: 16px;
   color: var(--text-2);
   max-width: 58ch;
-  margin-bottom: 22px;
-}
-
-/* CTA row: stacked on mobile, side-by-side on desktop */
-.cta-row{
-  display:flex;
-  flex-direction:column;
-  gap: 12px;
-  margin-bottom: 14px;
-  max-width: 520px;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  height: 50px;
-  padding: 0 18px;
-  border-radius: var(--pill);
-  border: 1px solid transparent;
-  font-size: 15px;
-  letter-spacing: -0.01em;
-  cursor:pointer;
-  user-select:none;
-  white-space: nowrap;
-}
-
-.btn-primary{
-  background: var(--cta-bg);
-  color: var(--cta-text);
-}
-.btn-primary:hover{ background: #ffffff; }
-
-.btn-secondary{
-  background: transparent;
-  border-color: rgba(243,243,244,0.40);
-  color: var(--text);
-}
-.btn-secondary:hover{
-  border-color: rgba(243,243,244,0.60);
-  background: rgba(243,243,244,0.06);
-}
-
-.micro{
-  font-size: 13px;
-  color: var(--text-3);
-}
-
-@media (min-width: 900px){
-  .container{ padding-inline: var(--pad-d); }
-  .site-header{ padding-top: calc(24px + env(safe-area-inset-top)); }
-  .cta-row{ flex-direction: row; }
-  .btn{ height: 52px; }
+  margin-bottom: 32px;
 }
 
 /* =========================================
-   Simple Pages (Waitlist / Reset)
-   Quiet, same world as hero
+   Buttons (Mechanical & Sharp)
 ========================================= */
-.page{
+.cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+  max-width: 520px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 0 24px;
+  border-radius: var(--pill);
+  border: 1px solid var(--text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: all 0.2s linear;
+}
+
+.btn-primary {
+  background: var(--cta-bg);
+  color: var(--cta-text);
+}
+.btn-primary:hover { 
+  background: var(--bg); 
+  color: var(--text);
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--border-2);
+  color: var(--text-2);
+}
+.btn-secondary:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+.micro {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  letter-spacing: 0.05em;
+}
+
+@media (min-width: 900px) {
+  .container { padding-inline: var(--pad-d); }
+  .site-header { padding-top: calc(24px + env(safe-area-inset-top)); }
+  .cta-row { flex-direction: row; }
+  .btn { height: 56px; }
+}
+
+/* =========================================
+   Utility Pages (Waitlist / Reset)
+========================================= */
+.page {
   min-height: 100svh;
-  position:relative;
-  overflow:hidden;
+  position: relative;
+  overflow: hidden;
   background: var(--bg);
 }
-.page .hero-media{ filter: none; }
-.page-inner{
-  position:relative;
+
+.page .hero-media { 
+  filter: grayscale(100%) contrast(120%) opacity(0.15); /* Faint background texture for utility pages */
+}
+
+.page-inner {
+  position: relative;
   z-index: 5;
   min-height: 100svh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding-top: calc(84px + env(safe-area-inset-top));
   padding-bottom: calc(24px + env(safe-area-inset-bottom));
 }
 
-.panel{
+.panel {
   width: 100%;
   max-width: 440px;
-  background: var(--surface-solid);
+  background: transparent;
   border: 1px solid var(--border);
   border-radius: var(--r-md);
-  padding: 26px;
+  padding: 40px;
   box-shadow: var(--shadow);
 }
 
-.panel h2{
-  font-size: 24px;
-  font-weight: 650;
-  letter-spacing: -0.02em;
-  margin-bottom: 10px;
+.panel h2 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
 }
 
-.panel p{
+.panel p {
   color: var(--text-2);
-  margin-bottom: 18px;
+  margin-bottom: 32px;
+  font-size: 14px;
 }
 
-.form{
-  display:flex;
-  flex-direction:column;
-  gap: 12px;
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-label{
-  font-size: 13px;
+label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
   color: var(--text-3);
-  margin-top: 4px;
+  letter-spacing: 0.05em;
 }
 
-input{
-  height: 50px;
-  padding: 0 14px;
+/* Surgical Inputs */
+input {
+  height: 40px;
+  padding: 0;
   border-radius: var(--r-sm);
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.06);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
   color: var(--text);
-  font-size: 16px; /* prevents iOS zoom on focus */
+  font-size: 16px; 
+  transition: border-color 0.2s linear;
+  -webkit-appearance: none; /* Fix for iOS rounding */
 }
-input:focus{
-  outline:none;
-  border-color: rgba(243,243,244,0.30);
+input:focus {
+  outline: none;
+  border-bottom: 1px solid var(--text);
+}
+input::placeholder {
+  color: var(--border-2);
 }
 
-.help{
+.form .btn {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.help {
   font-size: 13px;
   color: var(--text-3);
-  margin-top: 10px;
+  margin-top: 16px;
 }
 
-.inline-link{
-  margin-top: 14px;
-  font-size: 14px;
-  color: var(--text-2);
+.inline-link {
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--text-3);
 }
-.inline-link a{
+
+.inline-link a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px;
+  margin-left: 4px;
+  transition: all 0.2s ease;
+}
+.inline-link a:hover { 
   color: var(--text);
-  opacity: 0.9;
+  border-bottom-color: var(--text);
 }
-.inline-link a:hover{ opacity: 1; }
 
-/* Calm inline status */
-.status{
-  margin-top: 10px;
-  padding: 12px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.04);
-  color: var(--text-2);
-  font-size: 14px;
-  display:none;
+/* Terminal Status */
+.status {
+  margin-top: 24px;
+  padding: 16px;
+  border-left: 2px solid var(--text);
+  background: var(--border-2);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  display: none;
 }
-.status.show{ display:block; }
+.status.show { display: block; }
 
-@media (prefers-reduced-motion: reduce){
-  *{ scroll-behavior:auto !important; }
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
 }
