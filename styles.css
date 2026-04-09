@@ -83,16 +83,10 @@ button, input { font: inherit; }
 }
 
 .wordmark {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  border: none !important;
-}
-
-.logo-img {
-  height: 20px; /* Adjust scale here */
-  width: auto;
-  display: block;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  font-size: 16px;
+  text-transform: uppercase;
 }
 
 .header-link {
@@ -139,6 +133,15 @@ button, input { font: inherit; }
   justify-content: flex-end;
   padding-top: calc(88px + env(safe-area-inset-top));
   padding-bottom: calc(40px + env(safe-area-inset-bottom));
+}
+
+/* THE MASSIVE HERO LOGO */
+.hero-logo {
+  display: block;
+  width: 100%;
+  max-width: 400px; /* Adjust if you want it even bigger */
+  height: auto;
+  margin-bottom: 40px;
 }
 
 .kicker {
