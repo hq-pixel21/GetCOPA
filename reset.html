@@ -2,34 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0b0b0d" />
   <title>Reset password — Copa</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
-<header>
-  <div class="logo">COPA</div>
-  <a class="header-link" href="#">Back to sign in</a>
-</header>
+  <header class="site-header">
+    <div class="container">
+      <a class="wordmark" href="index.html" aria-label="Back to homepage">COPA</a>
+      <a class="header-link" href="https://app.copa.com">Back to sign in</a>
+    </div>
+  </header>
 
-<main class="page">
-  <section class="panel">
-    <h1>Reset your password</h1>
+  <main class="page" aria-label="Reset password">
+    <div class="hero-media" aria-hidden="true"></div>
+    <div class="hero-wash" aria-hidden="true"></div>
 
-    <p>We’ll email a link to get you back in.</p>
+    <div class="page-inner container">
+      <section class="panel" aria-label="Reset password form">
+        <h2>Reset your password</h2>
+        <p>We’ll email a link to get you back in.</p>
 
-    <form class="form">
-      <label>Email</label>
-      <input type="email" placeholder="name@domain.com" />
-      <button class="btn btn-primary" type="submit">
-        Send reset link
-      </button>
-    </form>
+        <form class="form" id="resetForm">
+          <label for="resetEmail">Email</label>
+          <input id="resetEmail" name="email" type="email" placeholder="name@domain.com" autocomplete="email" required />
+          <button class="btn btn-primary" type="submit">Send reset link</button>
+        </form>
 
-    <small>If it doesn’t show up, check spam—then try again.</small>
-  </section>
-</main>
+        <div class="status" id="resetStatus" role="status" aria-live="polite">
+          Link sent. If that email is connected to a Copa account, it’ll be waiting in your inbox.
+        </div>
+
+        <div class="help">If it doesn’t show up, check spam—then try again.</div>
+
+        <div class="inline-link">
+          <a href="https://app.copa.com">Back to sign in</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Minimal, calm UX: show success without security-heavy language.
+    const form = document.getElementById('resetForm');
+    const statusEl = document.getElementById('resetStatus');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      statusEl.classList.add('show');
+      form.querySelector('button').textContent = 'Sent';
+      form.querySelector('button').disabled = true;
+      form.querySelector('button').style.opacity = '0.85';
+    });
+  </script>
 
 </body>
 </html>
-``
