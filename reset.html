@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="dark" />
-  <meta name="theme-color" content="#0b0b0d" />
+  <meta name="theme-color" content="#000000" />
   <title>Reset password — Copa</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -24,7 +24,7 @@
 
     <div class="page-inner container">
       <section class="panel" aria-label="Reset password form">
-        <h2>Reset your password</h2>
+        <h2>Reset password</h2>
         <p>We’ll email a link to get you back in.</p>
 
         <form class="form" id="resetForm">
@@ -40,14 +40,13 @@
         <div class="help">If it doesn’t show up, check spam—then try again.</div>
 
         <div class="inline-link">
-          <a href="https://app.copa.com">Back to sign in</a>
+          <a href="https://app.copa.com" style="margin-left: 0;">Back to sign in</a>
         </div>
       </section>
     </div>
   </main>
 
   <script>
-    // Minimal, calm UX: show success without security-heavy language.
     const form = document.getElementById('resetForm');
     const statusEl = document.getElementById('resetStatus');
     form.addEventListener('submit', (e) => {
@@ -55,7 +54,8 @@
       statusEl.classList.add('show');
       form.querySelector('button').textContent = 'Sent';
       form.querySelector('button').disabled = true;
-      form.querySelector('button').style.opacity = '0.85';
+      form.querySelector('button').style.opacity = '0.5';
+      form.querySelector('button').style.cursor = 'not-allowed';
     });
   </script>
 
