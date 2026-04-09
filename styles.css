@@ -1,146 +1,308 @@
-/* ================================
-   COPA — IOS-SAFE DESIGN SYSTEM
-================================ */
+/* =========================================
+   COPA — PUBLIC SITE (SHIP READY)
+   Dark-first • Calm • Premium • Minimal
+========================================= */
 
-:root {
+:root{
   --bg: #0b0b0d;
-  --surface: #121216;
-  --text-primary: #f3f3f4;
-  --text-secondary: rgba(243,243,244,0.7);
-  --text-muted: rgba(243,243,244,0.45);
-  --border: rgba(255,255,255,0.1);
+  --surface: rgba(18,18,22,0.92);
+  --surface-solid: #121216;
+
+  --text: #f3f3f4;
+  --text-2: rgba(243,243,244,0.74);
+  --text-3: rgba(243,243,244,0.48);
+
+  --border: rgba(255,255,255,0.10);
+  --border-2: rgba(255,255,255,0.16);
+
   --cta-bg: #f3f3f4;
   --cta-text: #0b0b0d;
-  --radius: 18px;
+
+  --r-sm: 14px;
+  --r-md: 18px;
+  --pill: 999px;
+
+  --max: 1040px;
+
+  --pad-m: 22px;
+  --pad-d: 40px;
+
+  --shadow: 0 18px 60px rgba(0,0,0,0.42);
 }
 
-/* RESET */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, sans-serif;
+/* Reset */
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+body{
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
   background: var(--bg);
-  color: var(--text-primary);
+  color: var(--text);
   line-height: 1.55;
+  letter-spacing: -0.01em;
+}
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+button, input{ font:inherit; }
+
+:focus-visible{
+  outline: 2px solid rgba(243,243,244,0.22);
+  outline-offset: 2px;
+  border-radius: 10px;
 }
 
-/* ================================
-   HEADER (FIXED FOR IOS)
-================================ */
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: rgba(11,11,13,0.9);
-  backdrop-filter: blur(10px);
-  padding:
-    calc(12px + env(safe-area-inset-top))
-    20px
-    12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.container{
+  width:100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: var(--pad-m);
 }
 
-.logo {
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  font-size: 14px;
+/* =========================================
+   Header (overlay, but stable + safe-area)
+========================================= */
+.site-header{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  z-index: 20;
+  padding-top: calc(18px + env(safe-area-inset-top));
+  padding-bottom: 12px;
+}
+.site-header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
-.header-link {
-  font-size: 14px;
-  opacity: 0.85;
-}
-
-/* ================================
-   HERO (MOBILE-FIRST)
-================================ */
-
-.hero {
-  background: url("assets/hero.jpg") center / cover no-repeat;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 2;
-  padding:
-    48px
-    20px
-    calc(32px + env(safe-area-inset-bottom));
-  max-width: 520px;
-}
-
-/* TEXT */
-.kicker {
+.wordmark{
+  font-weight: 650;
+  letter-spacing: 0.10em;
   font-size: 13px;
-  color: var(--text-muted);
+  opacity: 0.95;
+}
+.header-link{
+  font-size: 14px;
+  color: var(--text-2);
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+.header-link:hover{ color: var(--text); }
+
+/* =========================================
+   Hero (cinematic, content anchored low)
+   Uses modern viewport units to avoid iOS jumps
+========================================= */
+.hero{
+  position:relative;
+  min-height: 100svh; /* stable viewport on mobile */
+  background: var(--bg);
+  overflow:hidden;
+}
+
+.hero-media{
+  position:absolute;
+  inset:0;
+  background-image: url("assets/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02); /* subtle, static */
+}
+
+/* Dark wash for legibility (no gradients) */
+.hero-wash{
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.62);
+}
+
+.hero-content{
+  position:relative;
+  z-index: 5;
+  min-height: 100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+
+  /* Safe area bottom so buttons never collide with home indicator */
+  padding-top: calc(88px + env(safe-area-inset-top));
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+}
+
+.kicker{
+  font-size: 13px;
+  color: var(--text-3);
   margin-bottom: 10px;
 }
 
-h1 {
-  font-size: 32px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+h1{
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  font-size: clamp(34px, 4.8vw, 56px);
   margin-bottom: 14px;
+  max-width: 18ch;
 }
 
-.sub {
+.sub{
   font-size: 16px;
-  color: var(--text-secondary);
-  margin-bottom: 28px;
+  color: var(--text-2);
+  max-width: 58ch;
+  margin-bottom: 22px;
 }
 
-/* ================================
-   CTA BLOCK (ORGANIZED)
-================================ */
-
-.cta-block {
-  display: flex;
-  flex-direction: column;
+/* CTA row: stacked on mobile, side-by-side on desktop */
+.cta-row{
+  display:flex;
+  flex-direction:column;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+  max-width: 520px;
 }
 
-.btn {
-  width: 100%;
-  padding: 14px;
-  border-radius: 999px;
-  font-size: 15px;
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height: 50px;
+  padding: 0 18px;
+  border-radius: var(--pill);
   border: 1px solid transparent;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  cursor:pointer;
+  user-select:none;
+  white-space: nowrap;
 }
 
-.btn-primary {
+.btn-primary{
   background: var(--cta-bg);
   color: var(--cta-text);
 }
+.btn-primary:hover{ background: #ffffff; }
 
-.btn-secondary {
+.btn-secondary{
   background: transparent;
-  border-color: rgba(243,243,244,0.4);
-  color: var(--text-primary);
+  border-color: rgba(243,243,244,0.40);
+  color: var(--text);
+}
+.btn-secondary:hover{
+  border-color: rgba(243,243,244,0.60);
+  background: rgba(243,243,244,0.06);
 }
 
-.micro {
+.micro{
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--text-3);
 }
 
-/* ================================
-   FORMS (WAITLIST / RESET)
+@media (min-width: 900px){
+  .container{ padding-inline: var(--pad-d); }
+  .site-header{ padding-top: calc(24px + env(safe-area-inset-top)); }
+  .cta-row{ flex-direction: row; }
+  .btn{ height: 52px; }
+}
+
+/* =========================================
+   Simple Pages (Waitlist / Reset)
+   Quiet, same world as hero
+========================================= */
+.page{
+  min-height: 100svh;
+  position:relative;
+  overflow:hidden;
+  background: var(--bg);
+}
+.page .hero-media{ filter: none; }
+.page-inner{
+  position:relative;
+  z-index: 5;
+  min-height: 100svh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-top: calc(84px + env(safe-area-inset-top));
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+}
+
+.panel{
+  width: 100%;
+  max-width: 440px;
+  background: var(--surface-solid);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 26px;
+  box-shadow: var(--shadow);
+}
+
+.panel h2{
+  font-size: 24px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.panel p{
+  color: var(--text-2);
+  margin-bottom: 18px;
+}
+
+.form{
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+}
+
+label{
+  font-size: 13px;
+  color: var(--text-3);
+  margin-top: 4px;
+}
+
+input{
+  height: 50px;
+  padding: 0 14px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  font-size: 16px; /* prevents iOS zoom on focus */
+}
+input:focus{
+  outline:none;
+  border-color: rgba(243,243,244,0.30);
+}
+
+.help{
+  font-size: 13px;
+  color: var(--text-3);
+  margin-top: 10px;
+}
+
+.inline-link{
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--text-2);
+}
+.inline-link a{
+  color: var(--text);
+  opacity: 0.9;
+}
+.inline-link a:hover{ opacity: 1; }
+
+/* Calm inline status */
+.status{
+  margin-top: 10px;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  color: var(--text-2);
+  font-size: 14px;
+  display:none;
+}
+.status.show{ display:block; }
+
+@media (prefers-reduced-motion: reduce){
+  *{ scroll-behavior:auto !important; }
+}
