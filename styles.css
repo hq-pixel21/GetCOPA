@@ -83,10 +83,16 @@ button, input { font: inherit; }
 }
 
 .wordmark {
-  font-weight: 800;
-  letter-spacing: -0.05em;
-  font-size: 16px;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border: none !important;
+}
+
+.logo-img {
+  height: 20px;
+  width: auto;
+  display: block;
 }
 
 .header-link {
@@ -130,7 +136,7 @@ button, input { font: inherit; }
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-end; /* Bottom anchored for mobile */
   padding-top: calc(88px + env(safe-area-inset-top));
   padding-bottom: calc(40px + env(safe-area-inset-bottom));
 }
@@ -139,7 +145,7 @@ button, input { font: inherit; }
 .hero-logo {
   display: block;
   width: 100%;
-  max-width: 400px; /* Adjust if you want it even bigger */
+  max-width: 320px; 
   height: auto;
   margin-bottom: 40px;
 }
@@ -226,11 +232,38 @@ h1 {
   letter-spacing: 0.05em;
 }
 
+/* =========================================
+   Desktop Overrides
+========================================= */
 @media (min-width: 900px) {
-  .container { padding-inline: var(--pad-d); }
-  .site-header { padding-top: calc(24px + env(safe-area-inset-top)); }
-  .cta-row { flex-direction: row; }
-  .btn { height: 56px; }
+  .container { 
+    padding-inline: var(--pad-d); 
+  }
+  .site-header { 
+    padding-top: calc(24px + env(safe-area-inset-top)); 
+  }
+  .cta-row { 
+    flex-direction: row; 
+  }
+  .btn { 
+    height: 56px; 
+  }
+  
+  /* Desktop-Specific Layout Fixes */
+  .hero-content {
+    justify-content: center; /* Pulls content up to the center of the monitor */
+    padding-top: 120px; /* Clears the header */
+    padding-bottom: 0;
+  }
+  
+  .hero-logo {
+    max-width: 480px; /* Allows the logo to get even larger on big screens */
+    margin-bottom: 60px; /* Adds more breathing room before the text */
+  }
+  
+  h1 {
+    max-width: 22ch; /* Lets the headline stretch out a bit more horizontally */
+  }
 }
 
 /* =========================================
