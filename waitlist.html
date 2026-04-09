@@ -2,36 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0b0b0d" />
   <title>Join the waitlist — Copa</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
-<header>
-  <div class="logo">COPA</div>
-  <a class="header-link" href="#">Open the app</a>
-</header>
+  <header class="site-header">
+    <div class="container">
+      <a class="wordmark" href="index.html" aria-label="Back to homepage">COPA</a>
+      <a class="header-link" href="https://app.copa.com">Open the app</a>
+    </div>
+  </header>
 
-<main class="page">
-  <section class="panel">
-    <h1>Join the waitlist</h1>
+  <main class="page" aria-label="Waitlist">
+    <div class="hero-media" aria-hidden="true"></div>
+    <div class="hero-wash" aria-hidden="true"></div>
 
-    <p>
-      We bring people in gradually to keep the conversation good.
-      When there’s space, we’ll send an invite.
-    </p>
+    <div class="page-inner container">
+      <section class="panel" aria-label="Join the waitlist form">
+        <h2>Join the waitlist</h2>
+        <p>
+          We bring people in gradually to keep the conversation good.
+          When there’s space, we’ll send an invite.
+        </p>
 
-    <form class="form">
-      <label>Email</label>
-      <input type="email" placeholder="name@domain.com" />
-      <button class="btn btn-primary" type="submit">
-        Request access
-      </button>
-    </form>
+        <form class="form" id="waitlistForm">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="name@domain.com" autocomplete="email" required />
+          <button class="btn btn-primary" type="submit">Request access</button>
+        </form>
 
-    <small>No spam. No marketing. Just the invite.</small>
-  </section>
-</main>
+        <div class="status" id="waitlistStatus" role="status" aria-live="polite">
+          You’re on the list. We’ll email when it’s your turn.
+        </div>
+
+        <div class="help">No spam. No marketing. Just the invite.</div>
+
+        <div class="inline-link">
+          Already have access? <a href="https://app.copa.com">Open the app</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Minimal, calm UX: show a success message without leaving the page.
+    const form = document.getElementById('waitlistForm');
+    const statusEl = document.getElementById('waitlistStatus');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      statusEl.classList.add('show');
+      form.querySelector('button').textContent = 'Requested';
+      form.querySelector('button').disabled = true;
+      form.querySelector('button').style.opacity = '0.85';
+    });
+  </script>
 
 </body>
 </html>
