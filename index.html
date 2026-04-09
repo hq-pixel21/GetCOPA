@@ -3,47 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0b0b0d" />
   <title>Copa</title>
-
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">COPA</div>
-    <a class="header-link" href="https://app.copa.com">
-      Open the app
-    </a>
+  <header class="site-header">
+    <div class="container">
+      <div class="wordmark">COPA</div>
+      <a class="header-link" href="https://app.copa.com">Open the app</a>
+    </div>
   </header>
 
-  <!-- HERO -->
-  <main class="hero">
-    <div class="hero-inner">
+  <main class="hero" aria-label="Copa homepage">
+    <div class="hero-media" aria-hidden="true"></div>
+    <div class="hero-wash" aria-hidden="true"></div>
 
+    <section class="hero-content container">
       <p class="kicker">Where football lives.</p>
 
       <h1>Talk football properly again.</h1>
 
       <p class="sub">
-        Copa is a small, invite‑only place for matchday conversation.
-        No algorithm. No rage bait. Just football.
+        We built Copa for the matchday feeling—small, invite‑only, and community‑led.
+        No algorithm. No rage bait. Just a room that cares about the game.
       </p>
 
-      <div class="cta-block">
-        <a class="btn btn-primary" href="waitlist.html">
-          Join the waitlist
-        </a>
-
-        <a class="btn btn-secondary" href="https://app.copa.com">
-          Open the app
-        </a>
+      <div class="cta-row" role="group" aria-label="Primary actions">
+        <a class="btn btn-primary" href="waitlist.html">Join the waitlist</a>
+        <a class="btn btn-secondary" href="https://app.copa.com">Open the app</a>
       </div>
 
       <p class="micro">Invite‑only, on purpose.</p>
-
-    </div>
+    </section>
   </main>
 
 </body>
