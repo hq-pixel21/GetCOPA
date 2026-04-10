@@ -40,7 +40,10 @@
 
       <div class="cta-row" role="group" aria-label="Primary actions">
         <a class="btn btn-primary" href="waitlist.html">Join the waitlist</a>
-        <a class="btn btn-secondary" href="https://app.copa.com">Open the app</a>
+        
+        <a class="btn btn-secondary" href="assets/fah.mp3" style="font-variant-numeric: tabular-nums; letter-spacing: 0.1em; min-width: 180px;">
+          <span id="hero-timer">00:00:00:00</span>
+        </a>
       </div>
 
       <p class="micro">Invite&mdash;only, on purpose.</p>
@@ -48,16 +51,19 @@
   </main>
 
   <script>
-    function updateTimer() {
+    function updateTimers() {
       // Target: April 18, 2026, 00:00:00 UK Time (BST is UTC+1)
       const targetDate = new Date("2026-04-18T00:00:00+01:00").getTime();
       const now = new Date().getTime();
       const gap = targetDate - now;
 
-      const timerEl = document.getElementById("timer");
+      const headerTimer = document.getElementById("timer");
+      const heroTimer = document.getElementById("hero-timer");
 
       if (gap <= 0) {
-        timerEl.innerText = "00:00:00:00";
+        const liveText = "00:00:00:00";
+        if (headerTimer) headerTimer.innerText = liveText;
+        if (heroTimer) heroTimer.innerText = liveText;
         return;
       }
 
@@ -71,18 +77,14 @@
       const m = Math.floor((gap % hour) / minute);
       const s = Math.floor((gap % minute) / second);
 
-      // Pad with leading zeros
-      const displayD = d.toString().padStart(2, '0');
-      const displayH = h.toString().padStart(2, '0');
-      const displayM = m.toString().padStart(2, '0');
-      const displayS = s.toString().padStart(2, '0');
+      const timeString = `${d.toString().padStart(2, '0')}:${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
 
-      timerEl.innerText = `${displayD}:${displayH}:${displayM}:${displayS}`;
+      if (headerTimer) headerTimer.innerText = timeString;
+      if (heroTimer) heroTimer.innerText = timeString;
     }
 
-    // Update every second
-    setInterval(updateTimer, 1000);
-    updateTimer();
+    setInterval(updateTimers, 1000);
+    updateTimers();
   </script>
 
 </body>
