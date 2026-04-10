@@ -8,28 +8,28 @@
   <title>Copa | A New Home for Football</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* Add this to your styles.css or keep it here to override */
+    /* Specific overrides for the layout */
     .hero-content {
       display: flex;
       flex-direction: column;
-      align-items: center; /* Centers items horizontally */
-      text-align: center;    /* Centers text lines */
+      align-items: flex-start; /* Keeps text/content left-aligned */
+      text-align: left;
       justify-content: center;
-      min-height: 80vh;      /* Ensures it takes up the screen */
+      min-height: 80vh;
     }
 
     .hero-logo {
       display: block;
       margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 2rem;   /* Space below the logo */
-      max-width: 150px;      /* Adjust size as needed */
+      margin-right: auto; /* This centers only the logo */
+      margin-bottom: 4rem; /* Extra breathing room below logo */
+      max-width: 150px;
       height: auto;
     }
 
     .cta-row {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start; /* Buttons stay on the left */
       gap: 1rem;
       flex-wrap: wrap;
     }
