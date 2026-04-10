@@ -20,6 +20,8 @@
     </div>
   </header>
 
+  <audio id="fahAudio" src="assets/fah.mp3" preload="auto"></audio>
+
   <main class="hero" aria-label="Copa homepage">
     <div class="hero-media" aria-hidden="true"></div>
     <div class="hero-wash" aria-hidden="true"></div>
@@ -29,30 +31,35 @@
 
       <p class="kicker">Where football lives.</p>
 
-      <h1>Talk football properly again.</h1>
+      <h1>Feels like football again.</h1>
 
       <p class="sub">
-        We built Copa for matchday feelings&mdash;banter, hot takes, real community.<br>
-        No algorithm. No rage bait. No engagement bait.<br>
-        Just a room for people who care about the beautiful game.<br>
-        Built by fans, for fans.
+        Matchday Energy. Real Banter. Proper Takes<br>
+        No Algorithm. No Rage Bait. No Engagement Farming.<br>
+        Just Football &mdash For the Culture
       </p>
 
       <div class="cta-row" role="group" aria-label="Primary actions">
         <a class="btn btn-primary" href="waitlist.html">Join the waitlist</a>
         
-        <a class="btn btn-secondary" href="assets/fah.mp3" style="font-variant-numeric: tabular-nums; letter-spacing: 0.1em; min-width: 180px;">
+        <button class="btn btn-secondary" onclick="playFah()" style="font-variant-numeric: tabular-nums; letter-spacing: 0.1em; min-width: 180px; background: transparent; cursor: pointer;">
           <span id="hero-timer">00:00:00:00</span>
-        </a>
+        </button>
       </div>
 
-      <p class="micro">Invite&mdash;only, on purpose.</p>
+      <p class="micro">Built by fans &mdash for fans..</p>
     </section>
   </main>
 
   <script>
+    // Audio Control Function
+    function playFah() {
+      const audio = document.getElementById("fahAudio");
+      audio.currentTime = 0; // Restart if clicked again
+      audio.play();
+    }
+
     function updateTimers() {
-      // Target: April 18, 2026, 00:00:00 UK Time (BST is UTC+1)
       const targetDate = new Date("2026-04-18T00:00:00+01:00").getTime();
       const now = new Date().getTime();
       const gap = targetDate - now;
