@@ -1,209 +1,113 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-
   <meta name="color-scheme" content="dark" />
-
   <meta name="theme-color" content="#000000" />
-
-  <title>Copa</title>
-
+  <title>Copa | A New Home for Football</title>
   <link rel="stylesheet" href="styles.css" />
-
 </head>
-
-
 
 <body>
 
-
-
   <header class="site-header">
-
     <div class="container">
-
       <div></div>
-
       <div id="timer" class="header-link" style="color: var(--text); font-variant-numeric: tabular-nums; letter-spacing: 0.1em;">
-
         00:00:00:00
-
       </div>
-
     </div>
-
   </header>
-
-
 
   <audio id="fahAudio" src="assets/fah.mp3" preload="auto"></audio>
 
-
-
   <main class="hero" aria-label="Copa homepage">
-
     <div class="hero-media" aria-hidden="true"></div>
-
     <div class="hero-wash" aria-hidden="true"></div>
 
-
-
     <section class="hero-content container">
-
       <img src="assets/logo.png" alt="Copa Logo" class="hero-logo" />
-
-
 
       <p class="kicker">EST. 2026</p>
 
-
-
       <h1>A NEW HOME FOR FOOTBALL.</h1>
 
-
-
       <p class="sub">
-
-        No algorithms. No farming. No noise.<br>
-
-        Pure banter. Real takes. <br>
-
+        No Algorithms. No Farming. No Noise.<br>
+        Pure Banter. Real Takes.<br>
         Old FT. Reclaimed.
-
       </p>
 
-
-
       <div class="cta-row" role="group" aria-label="Primary actions">
-
         <button class="btn btn-primary" onclick="handleSecureClick()">SECURE YOUR HANDLE</button>
-
         
-
         <div class="btn btn-secondary" style="font-variant-numeric: tabular-nums; letter-spacing: 0.1em; min-width: 180px; background: transparent; display: flex; align-items: center; justify-content: center;">
-
           <span id="hero-timer">00:00:00:00</span>
-
         </div>
-
       </div>
 
-
-
       <p class="micro">Built by fans — for fans.</p>
-
     </section>
-
   </main>
 
-
-
   <script>
-
-    function playFah() {
-
-      const audio = document.getElementById("fahAudio");
-
-      audio.currentTime = 0; 
-
-      audio.play();
-
-    }
-
-
+    const audio = document.getElementById("fahAudio");
 
     function handleSecureClick() {
-
-      playFah();
-
-      // 300ms delay to let the 'fah' sound trigger before redirecting
-
-      setTimeout(() => {
-
+      // Start the sound
+      audio.currentTime = 0;
+      audio.play().catch(err => {
+        // Fallback if browser blocks auto-play audio
+        console.error("Audio playback failed:", err);
         window.location.href = "waitlist.html";
+      });
 
-      }, 300);
+      // Redirect ONLY when audio finishes
+      audio.onended = function() {
+        window.location.href = "waitlist.html";
+      };
 
+      // Safety fallback: Redirect after 1.5s if something goes wrong
+      setTimeout(() => {
+        window.location.href = "waitlist.html";
+      }, 1500);
     }
 
-
-
     function updateTimers() {
-
       const targetDate = new Date("2026-04-18T00:00:00+01:00").getTime();
-
       const now = new Date().getTime();
-
       const gap = targetDate - now;
 
-
-
       const headerTimer = document.getElementById("timer");
-
       const heroTimer = document.getElementById("hero-timer");
 
-
-
       if (gap <= 0) {
-
         const liveText = "00:00:00:00";
-
         if (headerTimer) headerTimer.innerText = liveText;
-
         if (heroTimer) heroTimer.innerText = liveText;
-
         return;
-
       }
 
-
-
       const second = 1000;
-
       const minute = second * 60;
-
       const hour = minute * 60;
-
       const day = hour * 24;
 
-
-
       const d = Math.floor(gap / day);
-
       const h = Math.floor((gap % day) / hour);
-
       const m = Math.floor((gap % hour) / minute);
-
       const s = Math.floor((gap % minute) / second);
-
-
 
       const timeString = `${d.toString().padStart(2, '0')}:${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
 
-
-
       if (headerTimer) headerTimer.innerText = timeString;
-
       if (heroTimer) heroTimer.innerText = timeString;
-
     }
 
-
-
     setInterval(updateTimers, 1000);
-
     updateTimers();
-
   </script>
 
-
-
 </body>
-
 </html>
