@@ -13,10 +13,8 @@
 
   <header class="site-header">
     <div class="container">
-      <a class="wordmark" href="index.html" aria-label="Copa homepage">
-        <img src="assets/logo.png" alt="Copa Logo" class="logo-img" />
-      </a>
-      <a class="header-link" href="https://app.copa.com">Open the app</a>
+      <div></div>
+      <a class="header-link" href="index.html">Back to home</a>
     </div>
   </header>
 
@@ -51,16 +49,15 @@
     </div>
   </main>
 
-<script>
+  <script>
     const form = document.getElementById('waitlistForm');
     const statusEl = document.getElementById('waitlistStatus');
     
     // PASTE YOUR GOOGLE WEB APP URL HERE
-    const ENDPOINT = 'https://script.google.com/macros/s/AKfycbxGxKQhDbApRzHd2eBoh_OmStpO95q8eAxnhDbG9_Y0OytKw-rj_hQO6E0ljMA4Ghz7/exec';
+    const ENDPOINT = 'https://script.google.com/macros/s/YOUR_URL_ID_HERE/exec';
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault(); 
-      
       const btn = form.querySelector('button');
       btn.textContent = 'Requesting...'; 
       btn.disabled = true;
@@ -68,19 +65,16 @@
       const formData = new FormData(form);
 
       try {
-        // Send data silently to Google Sheets
         await fetch(ENDPOINT, {
           method: 'POST',
           body: formData,
-          mode: 'no-cors' // Bypasses Google's strict cross-origin rules
+          mode: 'no-cors' 
         });
 
-        // Because of no-cors, we assume success if no network crash occurred
         statusEl.classList.add('show');
         btn.textContent = 'Requested';
         btn.style.opacity = '0.5';
         btn.style.cursor = 'not-allowed';
-        
       } catch (error) {
         btn.textContent = 'Error. Try again.';
         btn.disabled = false;
