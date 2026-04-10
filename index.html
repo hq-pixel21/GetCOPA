@@ -7,6 +7,33 @@
   <meta name="theme-color" content="#000000" />
   <title>Copa | A New Home for Football</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Add this to your styles.css or keep it here to override */
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Centers items horizontally */
+      text-align: center;    /* Centers text lines */
+      justify-content: center;
+      min-height: 80vh;      /* Ensures it takes up the screen */
+    }
+
+    .hero-logo {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;   /* Space below the logo */
+      max-width: 150px;      /* Adjust size as needed */
+      height: auto;
+    }
+
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  </style>
 </head>
 
 <body>
@@ -34,8 +61,8 @@
       <h1>A NEW HOME FOR FOOTBALL.</h1>
 
       <p class="sub">
-        No Algorithms. No Farming. No Noise.<br>
-        Pure Banter. Real Takes.<br>
+        No algorithms. No farming. No noise.<br>
+        Pure banter. Real takes.<br>
         Old FT. Reclaimed.
       </p>
 
@@ -55,20 +82,16 @@
     const audio = document.getElementById("fahAudio");
 
     function handleSecureClick() {
-      // Start the sound
       audio.currentTime = 0;
       audio.play().catch(err => {
-        // Fallback if browser blocks auto-play audio
         console.error("Audio playback failed:", err);
         window.location.href = "waitlist.html";
       });
 
-      // Redirect ONLY when audio finishes
       audio.onended = function() {
         window.location.href = "waitlist.html";
       };
 
-      // Safety fallback: Redirect after 1.5s if something goes wrong
       setTimeout(() => {
         window.location.href = "waitlist.html";
       }, 1500);
