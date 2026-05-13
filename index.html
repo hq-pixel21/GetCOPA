@@ -12,7 +12,7 @@
     .hero-content {
       display: flex;
       flex-direction: column;
-      align-items: flex-start; 
+      align-items: flex-start;
       text-align: left;
       justify-content: center;
       min-height: 90vh;
@@ -22,7 +22,7 @@
     .hero-logo {
       display: block;
       margin-left: auto;
-      margin-right: auto; 
+      margin-right: auto;
       margin-bottom: 5rem; /* Large gap between big logo and text */
       width: 100%;
       max-width: 400px;    /* INCREASED SIZE HERE */
@@ -78,11 +78,39 @@
       </p>
 
       <div class="cta-row" role="group" aria-label="Primary actions">
-        <button class="btn btn-primary" onclick="handleSecureClick()">SECURE YOUR HANDLE</button>
-        
-        <div class="btn btn-secondary" style="font-variant-numeric: tabular-nums; letter-spacing: 0.1em; min-width: 180px; background: transparent; display: flex; align-items: center; justify-content: center;">
-          <span id="hero-timer">00:00:00:00</span>
-        </div>
+        <button class="btn btn-primary" onclick="handleSecureClick()">
+          SECURE YOUR HANDLE
+        </button>
+
+        <a
+          href="mailto:hq@getcopa.com?subject=COPA%20Handle%20Request&body=Username:%20"
+          class="btn btn-secondary"
+          style="
+            min-width: 180px;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+          "
+        >
+          CONTACT ME
+        </a>
+
+        <a
+          href="privacy.html"
+          class="btn btn-secondary"
+          style="
+            min-width: 180px;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+          "
+        >
+          PRIVACY POLICY
+        </a>
       </div>
 
       <p class="micro">Built by fans — for fans.</p>
@@ -115,12 +143,9 @@
       const gap = targetDate - now;
 
       const headerTimer = document.getElementById("timer");
-      const heroTimer = document.getElementById("hero-timer");
 
       if (gap <= 0) {
-        const liveText = "00:00:00:00";
-        if (headerTimer) headerTimer.innerText = liveText;
-        if (heroTimer) heroTimer.innerText = liveText;
+        if (headerTimer) headerTimer.innerText = "00:00:00:00";
         return;
       }
 
@@ -134,10 +159,13 @@
       const m = Math.floor((gap % hour) / minute);
       const s = Math.floor((gap % minute) / second);
 
-      const timeString = `${d.toString().padStart(2, '0')}:${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+      const timeString =
+        `${d.toString().padStart(2, '0')}:` +
+        `${h.toString().padStart(2, '0')}:` +
+        `${m.toString().padStart(2, '0')}:` +
+        `${s.toString().padStart(2, '0')}`;
 
       if (headerTimer) headerTimer.innerText = timeString;
-      if (heroTimer) heroTimer.innerText = timeString;
     }
 
     setInterval(updateTimers, 1000);
