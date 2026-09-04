@@ -32,14 +32,14 @@
       position: relative;
     }
 
-    /* Subtle background glow for depth */
+    /* Background glow */
     .bg-glow {
       position: absolute;
       top: -20%;
       left: 50%;
       transform: translateX(-50%);
-      width: 700px;
-      height: 700px;
+      width: 800px;
+      height: 800px;
       background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
       pointer-events: none;
       z-index: 0;
@@ -91,17 +91,17 @@
     }
 
     .hero-content {
-      max-width: 680px;
+      max-width: 720px;
     }
 
-    /* Bold Hero Logo */
+    /* 1.75X BIGGER LOGO */
     .hero-logo {
       display: block;
       width: 100%;
-      max-width: 320px;
+      max-width: 560px; /* Scaled up 1.75x from 320px */
       height: auto;
       margin-bottom: 2.5rem;
-      filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.08));
+      filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.08));
     }
 
     .kicker {
@@ -179,7 +179,7 @@
 
     @media (max-width: 640px) {
       .hero-logo {
-        max-width: 220px;
+        max-width: 380px; /* Scaled up mobile size */
         margin-bottom: 2rem;
       }
       .site-footer {
