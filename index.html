@@ -94,13 +94,13 @@
       max-width: 720px;
     }
 
-    /* 1.75X BIGGER LOGO */
+    /* Hero Logo with reduced bottom margin */
     .hero-logo {
       display: block;
       width: 100%;
-      max-width: 560px; /* Scaled up 1.75x from 320px */
+      max-width: 560px;
       height: auto;
-      margin-bottom: 2.5rem;
+      margin-bottom: 0.5rem; /* Reduced space below logo significantly */
       filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.08));
     }
 
@@ -110,7 +110,7 @@
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
     h1 {
@@ -179,8 +179,8 @@
 
     @media (max-width: 640px) {
       .hero-logo {
-        max-width: 380px; /* Scaled up mobile size */
-        margin-bottom: 2rem;
+        max-width: 380px;
+        margin-bottom: 0.5rem;
       }
       .site-footer {
         flex-direction: column;
