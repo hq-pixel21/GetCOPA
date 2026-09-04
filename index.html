@@ -46,34 +46,44 @@
       margin-top: 1.5rem;
     }
 
-    /* App Store Badge Styling */
-    .app-store-badge {
-      display: inline-block;
-      height: 48px; /* Standard recommended height */
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .app-store-badge:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-    }
-
-    .app-store-badge svg {
-      height: 100%;
-      width: auto;
-      display: block;
-    }
-
-    /* Shared secondary button styling */
-    .cta-row .btn-secondary {
+    /* Shared Button Styling across all 3 CTAs */
+    .cta-btn {
       height: 48px;
-      min-width: 160px;
+      min-width: 162px;
+      padding: 0 1.25rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      text-decoration: none;
-      background: transparent;
       box-sizing: border-box;
+      border-radius: 8px;
+      border: 1px solid rgba(166, 166, 166, 0.6);
+      background: black;
+      color: #ffffff;
+      text-decoration: none;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      border-color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* SVG Sizing inside the App Store CTA */
+    .cta-btn-appstore {
+      padding: 0;
+      border: none; /* SVG contains its own border and background */
+      background: transparent;
+    }
+
+    .cta-btn-appstore svg {
+      height: 100%;
+      width: auto;
+      display: block;
     }
   </style>
 </head>
@@ -98,12 +108,11 @@
       </p>
 
       <div class="cta-row" role="group" aria-label="Primary actions">
-        <!-- App Store Badge Link -->
         <a
           href="https://apps.apple.com/us/app/copa-hq/id6760593390"
           target="_blank"
           rel="noopener noreferrer"
-          class="app-store-badge"
+          class="cta-btn cta-btn-appstore"
           aria-label="Download Copa HQ on the App Store"
         >
           <svg viewBox="0 0 162 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -118,14 +127,14 @@
 
         <a
           href="mailto:hq@getcopa.com?subject=COPA%20Handle%20Request&body=Username:%20"
-          class="btn btn-secondary"
+          class="cta-btn"
         >
           CONTACT ME
         </a>
 
         <a
           href="privacy.html"
-          class="btn btn-secondary"
+          class="cta-btn"
         >
           PRIVACY POLICY
         </a>
