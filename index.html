@@ -39,26 +39,46 @@
 
     .cta-row {
       display: flex;
+      align-items: center;
       justify-content: flex-start;
       gap: 1rem;
       flex-wrap: wrap;
       margin-top: 1.5rem;
     }
+
+    /* App Store Badge Styling */
+    .app-store-badge {
+      display: inline-block;
+      height: 48px; /* Standard recommended height */
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .app-store-badge:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .app-store-badge svg {
+      height: 100%;
+      width: auto;
+      display: block;
+    }
+
+    /* Shared secondary button styling */
+    .cta-row .btn-secondary {
+      height: 48px;
+      min-width: 160px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background: transparent;
+      box-sizing: border-box;
+    }
   </style>
 </head>
 
 <body>
-
-  <header class="site-header">
-    <div class="container">
-      <div></div>
-      <div id="timer" class="header-link" style="color: var(--text); font-variant-numeric: tabular-nums; letter-spacing: 0.1em;">
-        00:00:00:00
-      </div>
-    </div>
-  </header>
-
-  <audio id="fahAudio" src="assets/fah.mp3" preload="auto"></audio>
 
   <main class="hero" aria-label="Copa homepage">
     <div class="hero-media" aria-hidden="true"></div>
@@ -78,21 +98,27 @@
       </p>
 
       <div class="cta-row" role="group" aria-label="Primary actions">
-        <button class="btn btn-primary" onclick="handleSecureClick()">
-          SECURE YOUR HANDLE
-        </button>
+        <!-- App Store Badge Link -->
+        <a
+          href="https://apps.apple.com/us/app/copa-hq/id6760593390"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="app-store-badge"
+          aria-label="Download Copa HQ on the App Store"
+        >
+          <svg viewBox="0 0 162 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="162" height="48" rx="8" fill="black"/>
+            <path d="M22.023 20.308C22.003 16.96 24.743 15.228 24.862 15.15C23.303 12.871 20.877 12.536 20.038 12.502C18.001 12.292 16.032 13.712 14.992 13.712C13.939 13.712 12.33 12.516 10.638 12.548C8.423 12.582 6.375 13.842 5.234 15.828C2.894 19.888 4.636 25.882 6.906 29.176C8.033 30.787 9.349 32.587 11.08 32.523C12.766 32.455 13.407 31.439 15.441 31.439C17.447 31.439 18.04 32.523 19.8 32.489C21.602 32.455 22.748 30.842 23.856 29.219C25.154 27.324 25.68 25.485 25.71 25.385C25.666 25.367 22.046 23.978 22.023 20.308Z" fill="white"/>
+            <path d="M18.427 10.741C19.351 9.613 19.98 8.053 19.805 6.5C18.463 6.555 16.793 7.4 15.828 8.528C14.966 9.529 14.204 11.118 14.411 12.639C15.91 12.755 17.491 11.879 18.427 10.741Z" fill="white"/>
+            <text x="50" y="18" fill="white" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="8" font-weight="500" letter-spacing="0.2">Download on the</text>
+            <text x="50" y="32" fill="white" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" letter-spacing="-0.2">App Store</text>
+            <rect x="0.5" y="0.5" width="161" height="47" rx="7.5" stroke="#A6A6A6" stroke-opacity="0.6"/>
+          </svg>
+        </a>
 
         <a
           href="mailto:hq@getcopa.com?subject=COPA%20Handle%20Request&body=Username:%20"
           class="btn btn-secondary"
-          style="
-            min-width: 180px;
-            background: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-          "
         >
           CONTACT ME
         </a>
@@ -100,77 +126,12 @@
         <a
           href="privacy.html"
           class="btn btn-secondary"
-          style="
-            min-width: 180px;
-            background: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-          "
         >
           PRIVACY POLICY
         </a>
       </div>
-
-      <p class="micro">Built by fans — for fans.</p>
     </section>
   </main>
-
-  <script>
-    const audio = document.getElementById("fahAudio");
-
-    function handleSecureClick() {
-      audio.currentTime = 0;
-      audio.play().catch(err => {
-        console.error("Audio playback failed:", err);
-        window.location.href = "waitlist.html";
-      });
-
-      audio.onended = function() {
-        window.location.href = "waitlist.html";
-      };
-
-      setTimeout(() => {
-        window.location.href = "waitlist.html";
-      }, 1500);
-    }
-
-    function updateTimers() {
-      // UPDATED TARGET DATE TO APRIL 25, 2026
-      const targetDate = new Date("2026-04-25T00:00:00+01:00").getTime();
-      const now = new Date().getTime();
-      const gap = targetDate - now;
-
-      const headerTimer = document.getElementById("timer");
-
-      if (gap <= 0) {
-        if (headerTimer) headerTimer.innerText = "00:00:00:00";
-        return;
-      }
-
-      const second = 1000;
-      const minute = second * 60;
-      const hour = minute * 60;
-      const day = hour * 24;
-
-      const d = Math.floor(gap / day);
-      const h = Math.floor((gap % day) / hour);
-      const m = Math.floor((gap % hour) / minute);
-      const s = Math.floor((gap % minute) / second);
-
-      const timeString =
-        `${d.toString().padStart(2, '0')}:` +
-        `${h.toString().padStart(2, '0')}:` +
-        `${m.toString().padStart(2, '0')}:` +
-        `${s.toString().padStart(2, '0')}`;
-
-      if (headerTimer) headerTimer.innerText = timeString;
-    }
-
-    setInterval(updateTimers, 1000);
-    updateTimers();
-  </script>
 
 </body>
 </html>
