@@ -1,401 +1,115 @@
-/* =========================================
-   COPA — PUBLIC SITE (COLD / BRUTALIST)
-   Strict • High-Contrast • Mechanical
-========================================= */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#000000" />
+  <title>Receipts by Copa — Matchday Predictions</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Additional custom layout tweaks for the Receipts rules grid */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+      max-width: 680px;
+    }
+    .rule-box {
+      border: 1px solid var(--border-2);
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.01);
+    }
+    .rule-pts {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .rule-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+    .rule-desc {
+      font-size: 12px;
+      color: var(--text-2);
+      line-height: 1.4;
+    }
+    @media (max-width: 768px) {
+      .rules-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
 
-:root {
-  /* Absolute Grayscale */
-  --bg: #000000;
-  --surface-solid: #000000;
-  --text: #ffffff;
-  --text-2: #88888b;
-  --text-3: #555555;
-  --border: #222224;
-  --border-2: #333333;
-  --cta-bg: #ffffff;
-  --cta-text: #000000;
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="wordmark">
+        <img src="assets/logo.png" alt="Receipts Logo" class="logo-img" />
+      </a>
+      <nav style="display: flex; gap: 24px; align-items: center;">
+        <a href="mailto:hq@getcopa.com?subject=Receipts%20Support" class="header-link">Support</a>
+        <a href="privacy.html" class="header-link">Privacy</a>
+      </nav>
+    </div>
+  </header>
 
-  /* Zero curves. Absolute corners. */
-  --r-sm: 0px;
-  --r-md: 0px;
-  --pill: 0px;
-  --shadow: none;
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-media" aria-hidden="true"></div>
+    <div class="hero-wash" aria-hidden="true"></div>
 
-  /* Layout */
-  --max: 1040px;
-  --pad-m: 22px;
-  --pad-d: 40px;
+    <div class="container hero-content">
+      <div>
+        <p class="kicker">Receipts • By Copa • Est. 2026</p>
 
-  /* Typography */
-  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  --font-mono: 'SF Mono', 'JetBrains Mono', 'Courier New', monospace;
-}
+        <h1>Back your calls.<br>Keep the receipts.</h1>
 
-/* Reset */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; background: var(--bg); }
-body {
-  font-family: var(--font-main);
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.55;
-  letter-spacing: -0.02em;
-  -webkit-font-smoothing: antialiased;
-}
-a { color: inherit; text-decoration: none; }
-img { max-width: 100%; display: block; }
-button, input { font: inherit; }
+        <p class="sub">
+          The ultimate football prediction game. Predict every match across the gameweek, lock in your boldest choices, and climb the table. No luck. Just receipts.
+        </p>
 
-/* Mechanical Focus States */
-:focus-visible {
-  outline: 1px solid var(--text);
-  outline-offset: 4px;
-  border-radius: 0;
-}
+        <!-- Scoring Rules Breakdown (Crucial for users & App Review transparency) -->
+        <div class="rules-grid">
+          <div class="rule-box">
+            <div class="rule-pts">+3 PTS</div>
+            <div class="rule-title">Right Result</div>
+            <div class="rule-desc">Correctly predict the winner or draw.</div>
+          </div>
+          <div class="rule-box">
+            <div class="rule-pts">+5 PTS</div>
+            <div class="rule-title">Exact Scoreline</div>
+            <div class="rule-desc">Nail the exact full-time score.</div>
+          </div>
+          <div class="rule-box">
+            <div class="rule-pts">2X LOCKS</div>
+            <div class="rule-title">Weekly Boosts</div>
+            <div class="rule-desc">Double your points on 2 team picks every week.</div>
+          </div>
+        </div>
 
-.container {
-  width: 100%;
-  max-width: var(--max);
-  margin: 0 auto;
-  padding-inline: var(--pad-m);
-}
+        <div class="cta-row">
+          <!-- Replace href with your actual App Store link when live -->
+          <a href="#" class="btn btn-primary">
+            Download on App Store
+          </a>
+          <a href="mailto:hq@getcopa.com?subject=Receipts%20Inquiry" class="btn btn-secondary">
+            Contact Support
+          </a>
+        </div>
 
-/* =========================================
-   Header (Overlay, stable + safe-area)
-========================================= */
-.site-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
-  padding-top: calc(18px + env(safe-area-inset-top));
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-.site-header .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+        <p class="micro">Part of the Copa Network &bull; &copy; 2026 Devansh Raj Mishra</p>
+      </div>
+    </div>
+  </section>
 
-.wordmark {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  border: none !important;
-}
-
-.logo-img {
-  height: 20px;
-  width: auto;
-  display: block;
-}
-
-.header-link {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  color: var(--text-2);
-  padding: 10px 0;
-  transition: color 0.2s ease;
-}
-.header-link:hover { color: var(--text); }
-
-/* =========================================
-   Hero (Cinematic, content anchored low)
-========================================= */
-.hero {
-  position: relative;
-  min-height: 100svh;
-  background: var(--bg);
-  overflow: hidden;
-}
-
-.hero-media {
-  position: absolute;
-  inset: 0;
-  background-image: url("assets/hero.jpg"); 
-  background-size: cover;
-  background-position: center;
-  filter: grayscale(100%) contrast(120%);
-}
-
-.hero-wash {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 5;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end; /* Bottom anchored for mobile */
-  padding-top: calc(88px + env(safe-area-inset-top));
-  padding-bottom: calc(40px + env(safe-area-inset-bottom));
-}
-
-/* THE MASSIVE HERO LOGO */
-.hero-logo {
-  display: block;
-  width: 100%;
-  max-width: 320px; 
-  height: auto;
-  margin-bottom: 40px;
-}
-
-.kicker {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  color: var(--text-2);
-  letter-spacing: 0.1em;
-  margin-bottom: 16px;
-}
-
-h1 {
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 0.95;
-  font-size: clamp(40px, 6vw, 72px);
-  margin-bottom: 14px;
-  max-width: 18ch;
-  text-transform: uppercase;
-}
-
-.sub {
-  font-size: 16px;
-  color: var(--text-2);
-  max-width: 58ch;
-  margin-bottom: 32px;
-}
-
-/* =========================================
-   Buttons (Mechanical & Sharp)
-========================================= */
-.cta-row {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 24px;
-  max-width: 520px;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 52px;
-  padding: 0 24px;
-  border-radius: var(--pill);
-  border: 1px solid var(--text);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  user-select: none;
-  white-space: nowrap;
-  transition: all 0.2s linear;
-}
-
-.btn-primary {
-  background: var(--cta-bg);
-  color: var(--cta-text);
-}
-.btn-primary:hover { 
-  background: var(--bg); 
-  color: var(--text);
-}
-
-.btn-secondary {
-  background: transparent;
-  border-color: var(--border-2);
-  color: var(--text-2);
-}
-.btn-secondary:hover {
-  border-color: var(--text);
-  color: var(--text);
-}
-
-.micro {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  color: var(--text-3);
-  letter-spacing: 0.05em;
-}
-
-/* =========================================
-   Desktop Overrides
-========================================= */
-@media (min-width: 900px) {
-  .container { 
-    padding-inline: var(--pad-d); 
-  }
-  .site-header { 
-    padding-top: calc(24px + env(safe-area-inset-top)); 
-  }
-  .cta-row { 
-    flex-direction: row; 
-  }
-  .btn { 
-    height: 56px; 
-  }
-  
-  /* Desktop-Specific Layout Fixes */
-  .hero-content {
-    justify-content: center; /* Pulls content up to the center of the monitor */
-    padding-top: 120px; /* Clears the header */
-    padding-bottom: 0;
-  }
-  
-  .hero-logo {
-    max-width: 480px; /* Allows the logo to get even larger on big screens */
-    margin-bottom: 60px; /* Adds more breathing room before the text */
-  }
-  
-  h1 {
-    max-width: 22ch; /* Lets the headline stretch out a bit more horizontally */
-  }
-}
-
-/* =========================================
-   Utility Pages (Waitlist / Reset)
-========================================= */
-.page {
-  min-height: 100svh;
-  position: relative;
-  overflow: hidden;
-  background: var(--bg);
-}
-
-.page .hero-media { 
-  filter: grayscale(100%) contrast(120%) opacity(0.15);
-}
-
-.page-inner {
-  position: relative;
-  z-index: 5;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: calc(84px + env(safe-area-inset-top));
-  padding-bottom: calc(24px + env(safe-area-inset-bottom));
-}
-
-.panel {
-  width: 100%;
-  max-width: 440px;
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: var(--r-md);
-  padding: 40px;
-  box-shadow: var(--shadow);
-}
-
-.panel h2 {
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-}
-
-.panel p {
-  color: var(--text-2);
-  margin-bottom: 32px;
-  font-size: 14px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  color: var(--text-3);
-  letter-spacing: 0.05em;
-}
-
-/* Surgical Inputs */
-input {
-  height: 40px;
-  padding: 0;
-  border-radius: var(--r-sm);
-  border: none;
-  border-bottom: 1px solid var(--border);
-  background: transparent;
-  color: var(--text);
-  font-size: 16px; 
-  transition: border-color 0.2s linear;
-  -webkit-appearance: none;
-}
-input:focus {
-  outline: none;
-  border-bottom: 1px solid var(--text);
-}
-input::placeholder {
-  color: var(--border-2);
-}
-
-.form .btn {
-  margin-top: 8px;
-  width: 100%;
-}
-
-.help {
-  font-size: 13px;
-  color: var(--text-3);
-  margin-top: 16px;
-}
-
-.inline-link {
-  margin-top: 24px;
-  font-size: 12px;
-  color: var(--text-3);
-}
-
-.inline-link a {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  color: var(--text-2);
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 2px;
-  margin-left: 4px;
-  transition: all 0.2s ease;
-}
-.inline-link a:hover { 
-  color: var(--text);
-  border-bottom-color: var(--text);
-}
-
-/* Terminal Status */
-.status {
-  margin-top: 24px;
-  padding: 16px;
-  border-left: 2px solid var(--text);
-  background: var(--border-2);
-  color: var(--text);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.6;
-  display: none;
-}
-.status.show { display: block; }
-
-@media (prefers-reduced-motion: reduce) {
-  * { scroll-behavior: auto !important; }
-}
+</body>
+</html>
